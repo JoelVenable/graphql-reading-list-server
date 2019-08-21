@@ -2,13 +2,16 @@
   "name": "reading-list-server",
   "version": "1.0.0",
   "description": "GraphQL server for demo app",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Joel Venable <joel.d.venable@gmail.com> (joelvenable.com)",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.4.2"
   }
 }
