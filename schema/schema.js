@@ -3,7 +3,8 @@ const {
   GraphQLInt,
   GraphQLString,
   GraphQLSchema,
-  GraphQLID
+  GraphQLID,
+  GraphQLList
 } = require('graphql');
 
 const { dummyBooks, dummyAuthors } = require('./dummydata');
@@ -16,6 +17,11 @@ const BookType = new GraphQLObjectType({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     genre: { type: GraphQLString },
+    author: {
+      type: AuthorType, resolve({ authorId }, _args) {
+        return _.find(dummyAuthors, { id: authorId })
+      }
+    }
   })
 });
 
@@ -25,6 +31,12 @@ const AuthorType = new GraphQLObjectType({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     age: { type: GraphQLInt },
+    books: {
+      type: new GraphQLList(BookType),
+      resolve({ id }, args) {
+        return _.filter(dummyBooks, { authorId: id });
+      }
+    }
   })
 });
 
@@ -48,9 +60,22 @@ const RootQuery = new GraphQLObjectType({
       resolve(parent, { id }) {
         return _.find(dummyAuthors, { id })
       }
+    },
+    books: {
+      type: new GraphQLList(BookType),
+      resolve() {
+        return dummyBooks;
+      }
+    }
+  },
+  authors: {
+    type: new GraphQLList(AuthorType),
+    resolve() {
+      return dummyAuthors;
     }
   }
 });
+
 
 module.exports.schema = new GraphQLSchema({
   query: RootQuery
