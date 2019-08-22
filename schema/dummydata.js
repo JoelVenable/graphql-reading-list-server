@@ -1,4 +1,4 @@
-module.exports.dummybooks = [
+module.exports.dummyBooks = [
   {
     name: 'Name of the wind', genre: 'Fantasy', id: '1'
   },
@@ -7,5 +7,14 @@ module.exports.dummybooks = [
   },
   {
     name: 'The Long Earth', genre: 'Sci-Fi', id: '3'
+  }
+];
+
+module.exports.dummyAuthors = [
+  {
+    name: "Bob Martin", age: 64, id: '1'
+  },
+  {
+    name: 'Michael Feathers', age: 49, id: '2'
   }
 ]
