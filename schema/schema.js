@@ -1,4 +1,7 @@
 const graphql, { GraphQLObjectType, GraphQLInteger, GraphQLString, GraphQLSchema } = require('graphql');
+const { dummybooks } = require('./dummydata');
+const _ = require('lodash');
+
 
 const BookType = new GraphQLObjectType({
   name: 'Book',
@@ -26,14 +29,15 @@ const RootQuery = new GraphQLObjectType({
       args: {
         id: { type: GraphQLString }
       },
-      resolve(parent, args) {
-        args.id
+      resolve(parent, { id }) {
+        return _.find(dummybooks, { id })
         // get data from db
+
       }
     }
   }
 });
 
-export const Schema = new GraphQLSchema({
+export const schema = new GraphQLSchema({
   query: RootQuery
 });
