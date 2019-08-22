@@ -1,4 +1,4 @@
-export const dummybooks = [
+module.exports.dummybooks = [
   {
     name: 'Name of the wind', genre: 'Fantasy', id: '1'
   },

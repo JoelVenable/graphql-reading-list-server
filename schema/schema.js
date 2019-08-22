@@ -1,4 +1,4 @@
-const graphql, { GraphQLObjectType, GraphQLInteger, GraphQLString, GraphQLSchema } = require('graphql');
+const { GraphQLObjectType, GraphQLInteger, GraphQLString, GraphQLSchema } = require('graphql');
 const { dummybooks } = require('./dummydata');
 const _ = require('lodash');
 
@@ -38,6 +38,6 @@ const RootQuery = new GraphQLObjectType({
   }
 });
 
-export const schema = new GraphQLSchema({
+module.exports.schema = new GraphQLSchema({
   query: RootQuery
 });
